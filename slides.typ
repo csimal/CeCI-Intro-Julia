@@ -190,6 +190,7 @@ My personal takes for Julia:
 - Tiny compared to Python
 - Array indices start at 1
 
+#note()[More criticism: https://yuri.is/not-julia/]
 ]
 
 #focus-slide[
