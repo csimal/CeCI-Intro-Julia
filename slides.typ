@@ -15,9 +15,14 @@
 #set text(font: "Comfortaa")
 #show heading: set text(font: "Comfortaa", bottom-edge: "baseline")
 #show raw: set text(font: "JuliaMono")
-#show raw: set align(center)
+#set raw(align: left)
 #show emph: set text(font: "Carlito")
 
+#let note(dy: 1.5em, textsize: 0.7em, body) = {
+    set text(size: textsize)
+    place(bottom + left,
+    dy: dy, body)
+}
 
 #title-slide[
     = Introduction to Julia
@@ -38,9 +43,7 @@
     Birth of Leo Baekeland (1863)
 ]
 
-#place(bottom + left, 
-dy: 1em,
-text(size: 0.7em, [image source: Wikipedia]))
+#note[image source: Wikipedia]
 ]
 
 #slide[
@@ -59,6 +62,8 @@ text(size: 0.7em, [image source: Wikipedia]))
 #slide[
 == Installing Julia (via Juliaup)
 #side-by-side[
+#text(size: 0.8em, [https://github.com/JuliaLang/juliaup])
+
 Windows
 ```
 winget install julia -s msstore
@@ -67,8 +72,16 @@ Mac/Linux
 ```
 curl -fsSL https://install.julialang.org | sh
 ```
-][
 
+Then
+```
+juliaup update
+```
+][
+#set align(center)
+Follow along!
+
+#qrcode("https://github.com/csimal/CeCI-Intro-Julia")
 ]
 ]
 
@@ -83,12 +96,9 @@ curl -fsSL https://install.julialang.org | sh
 ][
 #image("images/practical-julia.jpg", height: 60%)
 ]
-#place(bottom + left,
-dy: 1em,
-text(size: 0.7em, [https://benlauwens.github.io/ThinkJulia.jl/latest/book])
-)
-]
 
+#note[https://benlauwens.github.io/ThinkJulia.jl/latest/book]
+]
 
 #slide[
 = Modern Problems in Scientific Computing
@@ -103,15 +113,18 @@ text(size: 0.7em, [https://benlauwens.github.io/ThinkJulia.jl/latest/book])
 #align(center)[
 #image("images/cpu-languages.svg", height: 80%)
 ]
-#place(bottom + left, 
-dy: 1em,
-text(size: 0.7em, [data: https://github.com/karlrupp/microprocessor-trend-data]))
+#note[data: https://github.com/karlrupp/microprocessor-trend-data]
 ]
 
 #slide[
 = Meet Julia
 == A short history
+#align(center)[
+    #image("images/timeline.png", height: 65%)
+]
+#note(textsize: 0.6em)[https://julialang.org/blog/2012/02/why-we-created-julia/
 
+https://www.hpcwire.com/off-the-wire/julia-joins-petaflop-club/]
 ]
 
 #slide[
@@ -119,9 +132,7 @@ text(size: 0.7em, [data: https://github.com/karlrupp/microprocessor-trend-data])
 #set align(center)
 #image("images/benchmarks.svg", height: 83%)
 
-#place(bottom + left, 
-dy: 1em,
-text(size: 0.7em, [https://julialang.org/benchmarks/]))
+#note[https://julialang.org/benchmarks/]
 ]
 
 #slide[
@@ -129,9 +140,7 @@ text(size: 0.7em, [https://julialang.org/benchmarks/]))
 #set align(center)
 #image("images/ode-benchmark.png", height: 80%)
 
-#place(bottom + left, 
-dy: 1em,
-text(size: 0.7em, [https://benchmarks.sciml.ai/stable/MultiLanguage/ode_wrapper_packages/]))
+#note[https://benchmarks.sciml.ai/stable/MultiLanguage/ode_wrapper_packages/]
 ]
 
 #slide[
@@ -152,16 +161,20 @@ text(size: 0.7em, [https://benchmarks.sciml.ai/stable/MultiLanguage/ode_wrapper_
 #align(center)[
 #stickybox(rotation: 1deg, width: 15cm)[
 // Architext
+#block(inset: 0.7em)[
 #text(size: 0.9em, font: "Handlee")[
 If you want to evangelize a tool or process or technology, you should be able to answer two questions:
  + What negative thing do you have to deal with?
- + What positive thing do you have to give up?#footnote([https://hillelwayne.com/hate-your-tools/])
+ + What positive thing do you have to give up?
 ]]]
+]
 
 My personal takes for Julia:
 
 + Time to first X; Poorly documented/Undocumented features.
 + No formal Interfaces/Traits/Typeclasses. Types don't help with correctness.
+
+#note[https://hillelwayne.com/hate-your-tools/]
 ]
 
 #slide[
@@ -180,47 +193,50 @@ My personal takes for Julia:
 ]
 
 #focus-slide[
+    = The Julia REPL
+]
+
+#focus-slide[
     = Basics of Julia
 ]
 
 #slide[
-== Variables and comments
-
-Variable declaration: 
+== Variables, comments and statements
+#side-by-side[
+Variable declaration
 ```jl
 foo = 1
 ```
-Multiple declarations:
+Multiple declarations
 ```jl
-a, b, c = 1, 2, 3 # a = 1; b = 2; c = 3 
+a, b, c = 1, 2, 3 
+# a = 1; b = 2; c = 3 
 ```
-Multiline comment:
+Multiline comment
 ```jl
 #= This comment
 spans multiple 
 lines
 =#
 ```
-
-]
-
-#slide[
-== Expressions
-
+][
+By default, one statement per line
 ```jl
-a = 1; a += 1; a *= 2
-# equivalent to
 a = 1
 a += 1 # a = a + 1
 a *= 2 # a = a * 2
 
+# compact version
+a = 1; a += 1; a *= 2
+
+# block version
 begin
     a = 1
     a += 1
     a *= 2
 end
-```
-
+```   
+]
 ]
 
 #slide[
@@ -251,7 +267,7 @@ y = ("Waffle", 2)
 z = Dict(
     "Frites" => 2.0,
     "Fricandelle" => 1.5,
-    "Sauce Andalouse" => 0.3
+    "Sauce Andalouse" => 0.3,
 )
 ```
 ]
@@ -273,7 +289,7 @@ else
 end
 ```
 ][
-Note that an if bloc is an expression that returns a value:
+Note that an if block is an expression that returns a value:
 ```jl
 age = rand(1:40)
 status = if age < 18
@@ -282,7 +298,7 @@ else
     "adult"
 end
 ```
-Ternary operator:
+Ternary operator
 ```jl
 status = age < 18 ? "minor" : "adult"
 ```
@@ -295,7 +311,7 @@ status = age < 18 ? "minor" : "adult"
 Python style for-loops with iterators
 ```jl
 k = 0
-for k in 1:10
+for i in 1:10
     k += i
 end
 ```
@@ -335,7 +351,7 @@ c = Array{Int,2}(undef, 3,4)
 d = Array{Int,2}(undef, (3,4))
 ```
 
-Special constructors for arrays of zeroes/ones/arbitary value
+Special constructors for arrays of zeroes/ones/arbitrary value
 ```jl
 e = zeros(3,4)
 f = ones(3)
@@ -488,7 +504,7 @@ end
 ```jl
 function say_hello(x = "World"; hello_str="Hello", end_str="!")
     # NB. '*' concatenates strings
-    print(hello_str * ", " * x * end_str)
+    println(hello_str * ", " * x * end_str)
 end
 ```
 ```
@@ -499,6 +515,7 @@ julia> say_hello("Alice")
 Hello, Alice!
 
 julia> say_hello("Alice", hello_str="Bonjour", end_str="?")
+Bonjour, Alice?
 ```
 ]
 
@@ -506,3 +523,246 @@ julia> say_hello("Alice", hello_str="Bonjour", end_str="?")
     = The Type System
 ]
 
+#slide[
+== Elementary Types
+#set raw(align: left)
+#side-by-side[
+Type annotations
+```jl
+a::Int = 1
+b::Float64 = 0.2
+c::Vector{Int} = [1,2,3]
+```
+Numeric types
+
+- Integers: ```jl Int``` (```jl Int64```), ```jl Int32```, ...
+- Unsigned Ints: ```jl UInt64```, ```jl UInt32```, ...
+- Floats: ```jl Float64```, ```jl Float32```, ...
+- Complex Numbers: ```jl ComplexF64```, ```jl Complex{Float64}```, ...
+][
+Collections with generic element types
+- N-dimensional Array of eltype `T`: ```jl 
+Array{T,N}
+```
+- Dictionary with keys of type `K` and values of type `V`: ```jl 
+Dict{K,V}
+```
+]
+]
+
+#slide[
+== Creating new types
+#side-by-side[
+```jl
+struct Student
+    name::String
+    age::Int
+    section::String
+    year::Int
+end
+```
+
+Default constructor
+```jl
+alice = Student("Alice", 22, "Chemistry", 4)
+# accessing fields
+alice.section
+```][
+Mutable structs
+```jl
+mutable struct Lightbulb
+    age::Int
+    wattage::Float64
+    turned_on::Bool
+end
+```
+Type parameters
+```jl
+struct Point2D{T}
+    x::T
+    y::T
+end
+```
+]
+]
+
+#slide[
+== Subtyping
+#grid(
+    columns: (35%, 65%)
+)[
+Subtype relation
+```jl 
+Int <: Integer
+```
+
+Defining a type as a subtype
+```jl
+abstract type Animal end
+abstract type Mammal <: Animal end
+struct Tiger <: Mammal end
+```
+][
+#set align(right)
+#image("images/type-tree-annotated.png", height: 80%)
+]]
+
+#slide[
+== First-Class Citizens
+
+#align(center)[
+#stickybox(rotation: 1deg, width: 15cm)[
+// Architext
+#block(inset: 0.7em)[
+#text(size: 1em, font: "Handlee")[
+In a given programming language, first-class citizens are objects that
++ can be used as arguments of functions
++ can be returned by functions
++ can be assigned to variables
++ can be tested for equality
+]]]
+]
+
+
+
+In Julia, the following objects are first-class citizens
+
+- Functions ($=>$ Functional Programming)
+- Types (via the `Type{T}` type)
+- Julia expressions ($=>$ Metaprograming)
+]
+
+#slide[
+== Multiple Dispatch
+#side-by-side[
+Functions can be defined with specific input types
+```jl
+function collatz(n::Int)
+    iseven(n) ? div(n,2) : 3n+1
+end
+```
+Optional return type
+```jl
+function collatz(n::Int)::Int
+    iseven(n) ? div(n,2) : 3n+1
+end
+```
+][
+Multiple definitions with different types (Methods)
+```jl
+foo(n::Int) = "$n is an Int"
+foo(x::Float64) = "$x is a Float"
+foo(s::String) = "$s is a String"
+```
+NB. a function is just a name with multiple methods!
+]
+]
+
+
+
+#slide[
+== Multiple Dispatch (2)
+#side-by-side[
+Let's model chemical reactions
+```jl
+abstract type Chemical end
+struct H2 <: Chemical
+struct H2O <: Chemical end
+struct O2 <: Chemical end
+struct SO3 <: Chemical end
+...
+```
+][
+- `H2` + `O2` $->$ `H2O` (+ explosion)
+- `H2O` + `SO3` $->$ `H2SO4`
+- otherwise nothing happens
+]
+]
+
+#slide[
+== Multiple Dispatch (3)
+#side-by-side[
+Don't do this!
+```jl
+function mix(x,y)
+    if (x isa H2 && y isa O2)
+        return "Boom!"
+    elseif (x isa H2O && y isa SO3)
+        return "Sulfuric Acid!"
+    else
+        return "Nothing happens."
+    end
+end
+```
+][
+Use multiple dispatch
+```jl
+mix(::H2, ::O2) = "Boom!"
+mix(::O2, ::H2) = "Boom!"
+mix(::H2O, ::SO3) = "Sulfuric Acid!"
+mix(::SO3, ::H2O) = "Sulfuric Acid!"
+mix(::Chemical, ::Chemical) = "Nothing Happens"
+```
+]
+#note[For another example: https://www.moll.dev/projects/effective-multi-dispatch/]
+]
+
+#slide[
+== Multiple Dispatch: Dual Numbers
+#side-by-side[
+```jl
+struct Dual <: Number
+    x::Float64
+    y::Float64
+end
+
+convert(::Type{Dual}, x::Real) = Dual(x, zero(x))
+promote_rule(
+    ::Type{Dual}, 
+    ::Type{<:Number}) = Dual
+show(io::IO, d::Dual) = print(io, d.x, " + ", d.y," ϵ")
+```
+][
+    Arithmetic operations
+```jl
++(a::Dual, b::Dual) = Dual(a.x + b.x, a.y + b.y)
+-(a::Dual, b.Dual) = Dual(a.x - b.x, a.y - b.y)
+*(a::Dual, b.Dual) = Dual(a.x * b.x, a.y*b.x + a.x*b.y)
+/(a::Dual, b::Dual) = Dual(a.x/b.x, (a.y*b.x - a.x*b.y)/(b.x^2))
+
+
+```
+]
+]
+
+#focus-slide[
+= Package Management
+]
+
+#slide[
+== Noteworthy packages (for science)
+
+#side-by-side[
+ODEs/Dynamical Systems
+    - `DifferentialEquations.jl`
+    - `ModelingToolkit.jl`
+    - `Catalyst.jl` (chemical equations)
+Optimization
+    - `JuMP`
+    - `Optim.jl`
+Misc
+    - `Unitful.jl`
+    - `Measurements.jl`
+][
+Statistics/Probability
+    - `Distributions.jl`
+    - `Statistics.jl`
+    - `GLM.jl` (Linear Regression)
+    - `Turing.jl`, `Gen.jl`, `Stan.jl` (Bayesian models)
+    - `Tidier.jl` (Tidyverse in Julia)
+Plotting
+    - `Plots.jl`
+    - `Makie.jl`
+    - `Gadfly.jl`
+]
+]
