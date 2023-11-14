@@ -53,8 +53,8 @@
 + Installing Julia
 + Elevator pitch (while you're installing)
 + The Julia REPL
-+ Basics of Julia
-+ Multiple Dispatch
++ Basics of Julia (`basic.ipynb`)
++ Multiple Dispatch (`types.ipynb`)
 + Package Management
 
 ]
