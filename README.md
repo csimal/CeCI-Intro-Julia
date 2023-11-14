@@ -14,7 +14,13 @@ Contents:
 
 You'll first need to install Julia on your computer. To do that, the easiest way is to use [juliaup](https://github.com/JuliaLang/juliaup) to install the latest version (v1.9.3).
 
-To run the notebooks, you'll at least need a Jupyter installation. The easiest way for that would be to install [VSCode](https://code.visualstudio.com/) (or it's fully open source fork [VSCodium](https://vscodium.com/)), and then install the [Julia Extension](https://www.julia-vscode.org/docs/dev/gettingstarted/) along with the [Jupyter extension](https://github.com/microsoft/vscode-jupyter) (Both of these are available from the Plugin tab in VsCode)
+To run the notebooks, you'll at least need a Jupyter installation. The easiest way for that would be to install [VSCode](https://code.visualstudio.com/) (or it's fully open source fork [VSCodium](https://vscodium.com/)), and then install the [Julia Extension](https://www.julia-vscode.org/docs/dev/gettingstarted/) along with the [Jupyter extension](https://github.com/microsoft/vscode-jupyter) (Both of these are available from the Plugin tab in VSCode)
+
+Alternatively, you can just install Jupyter (via `pip`) and install the Julia Jupyter kernel. To do that, launch Julia in a terminal and enter the following line
+```
+] add IJulia
+```
+Once the package is installed, you'll be able to select Julia as a kernel in Jupyter notebooks.
 
 ## Learning Julia
 

@@ -82,6 +82,8 @@ juliaup update
 Follow along!
 
 #qrcode("https://github.com/csimal/CeCI-Intro-Julia")
+
+#text(size:0.8em)[https://github.com/csimal/CeCI-Intro-Julia]
 ]
 ]
 
@@ -727,8 +729,8 @@ show(io::IO, d::Dual) = print(io, d.x, " + ", d.y," ϵ")
     Arithmetic operations
 ```jl
 +(a::Dual, b::Dual) = Dual(a.x + b.x, a.y + b.y)
--(a::Dual, b.Dual) = Dual(a.x - b.x, a.y - b.y)
-*(a::Dual, b.Dual) = Dual(a.x * b.x, a.y*b.x + a.x*b.y)
+-(a::Dual, b::Dual) = Dual(a.x - b.x, a.y - b.y)
+*(a::Dual, b::Dual) = Dual(a.x * b.x, a.y*b.x + a.x*b.y)
 /(a::Dual, b::Dual) = Dual(a.x/b.x, (a.y*b.x - a.x*b.y)/(b.x^2))
 
 
