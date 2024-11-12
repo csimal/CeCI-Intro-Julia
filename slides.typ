@@ -29,18 +29,18 @@
     == Cédric Simal
     #link("cedric.simal@unamur.be")
     == CéCI Training Sessions
-    14/11/2023
+    13/11/2023
 
 ]
 
 #centered-slide[
 == Science Anniversaries of today
 #side-by-side[
-    #image("images/appolo-12.jpg", height: 70%)
-    Apollo 12 Launch (1969)
+    #image("images/GIMPS_logo_2020.png", height: 65%)
+    First prime number discovered (1996)
 ][
-    #image("images/baekeland.jpg", height: 70%)
-    Birth of Leo Baekeland (1863)
+    #image("images/grothendieck.jpeg", height: 65%)
+    Death of Alexander Grothendieck (2014)
 ]
 
 #note[image source: Wikipedia]
@@ -52,10 +52,9 @@
 
 + Installing Julia
 + Elevator pitch (while you're installing)
-+ The Julia REPL
 + Basics of Julia (`basic.ipynb`)
 + Multiple Dispatch (`types.ipynb`)
-+ Package Management
++ Exercises (choose your own path)
 
 ]
 
@@ -100,6 +99,17 @@ Follow along!
 ]
 
 #note[https://benlauwens.github.io/ThinkJulia.jl/latest/book]
+]
+
+#slide[
+== Wishlist for an HPC language
+#set text(size: 24pt)
+
+- Expressive (esp. for scientific computing)
+- Efficient, easily optimizable
+- Hardware support (multiple CPUs, GPUs, ...)
+- Ecosystem
+- Free (open source)
 ]
 
 #slide[
@@ -174,7 +184,7 @@ If you want to evangelize a tool or process or technology, you should be able to
 My personal takes for Julia:
 
 + Time to first X; Poorly documented/Undocumented features.
-+ No formal Interfaces/Traits/Typeclasses. Types don't help with correctness.
++ No formal Interfaces/Traits/Typeclasses. Types don't help with correctness. Static Analysis fundamentally limited
 
 #note[https://hillelwayne.com/hate-your-tools/]
 ]
@@ -193,10 +203,6 @@ My personal takes for Julia:
 - Array indices start at 1
 
 #note()[More criticism: https://yuri.is/not-julia/]
-]
-
-#focus-slide[
-    = The Julia REPL
 ]
 
 #focus-slide[
@@ -660,7 +666,6 @@ foo(s::String) = "$s is a String"
 NB. a function is just a name with multiple methods!
 ]
 ]
-
 
 
 #slide[
