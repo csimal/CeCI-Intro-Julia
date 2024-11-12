@@ -12,15 +12,23 @@ Contents:
 
 ## Running the examples in this repo
 
-You'll first need to install Julia on your computer. To do that, the easiest way is to use [juliaup](https://github.com/JuliaLang/juliaup) to install the latest version (v1.9.3).
+You'll first need to install Julia on your computer. To do that, the easiest way is to use [juliaup](https://github.com/JuliaLang/juliaup) to install the latest version.
 
 To run the notebooks, you'll at least need a Jupyter installation. The easiest way for that would be to install [VSCode](https://code.visualstudio.com/) (or it's fully open source fork [VSCodium](https://vscodium.com/)), and then install the [Julia Extension](https://www.julia-vscode.org/docs/dev/gettingstarted/) along with the [Jupyter extension](https://github.com/microsoft/vscode-jupyter) (Both of these are available from the Plugin tab in VSCode)
 
 Alternatively, you can just install Jupyter (via `pip`) and install the Julia Jupyter kernel. To do that, launch Julia in a terminal and enter the following line
-```
+```julia-repl
 ] add IJulia
 ```
 Once the package is installed, you'll be able to select Julia as a kernel in Jupyter notebooks.
+
+The examples and exercises use several packages. To install them, open a terminal in the main folder, run the Julia REPL and enter the following lines
+```julia-repl
+] activate .
+
+instantiate
+```
+The first line will activate the local package environment, which contains a list of all the packages needed. The second line will install those packages. This may take a few minutes.
 
 ## Learning Julia
 
@@ -36,6 +44,10 @@ Once the package is installed, you'll be able to select Julia as a kernel in Jup
 - Official Manual https://docs.julialang.org/en/v1/
 - https://julialang.org/learning/
 - Noteworthy Differences from other languages https://docs.julialang.org/en/v1/manual/noteworthy-differences/
+
+## Exercices
+
+
 
 ## Packages
 
@@ -75,4 +87,4 @@ This repository is licensed under the Creative Commons CC0 Universal License.
 
 The slides were made with [Typst](https://typst.app/). Demos were made using Jupyter notebooks. Plots shown in the slides were generated in Julia within a [Pluto](https://plutojl.org/) notebook.
 
-All demos use Julia 1.9.3.
+All demos use Julia 1.11.1
