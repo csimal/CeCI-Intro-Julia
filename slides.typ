@@ -205,6 +205,30 @@ My personal takes for Julia:
 #note()[More criticism: https://yuri.is/not-julia/]
 ]
 
+#slide[
+== Similar languages
+
+#side-by-side[
+#align(center)[    
+#image("images/rust.png", height: 30%)
+]
+"C/C++ but memory safe"
+
+- _Much_ more complex
+- Practically nonexistant scientific computing ecosystem
+][
+#align(center)[
+#image("images/jax.png", height: 30%)
+]
+"Numpy, but JIT compiled"
+
+- Slightly more complex
+- More constrained
+- Proprietary compiler
+- Less developped scientific computing ecosystem
+]
+]
+
 #focus-slide[
     = Basics of Julia
 ]
