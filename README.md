@@ -45,9 +45,6 @@ The first line will activate the local package environment, which contains a lis
 - https://julialang.org/learning/
 - Noteworthy Differences from other languages https://docs.julialang.org/en/v1/manual/noteworthy-differences/
 
-## Exercices
-
-
 
 ## Packages
 
